@@ -1,0 +1,444 @@
+{
+    "cells": [
+        {
+            "cell_type": "markdown",
+            "metadata": {},
+            "source": [
+                "# Lesson5\n",
+                "\n",
+                "## クラス\n",
+                "\n",
+                "クラスとは、オブジェクト指向プログラミングにおいて、オブジェクトの設計図のこと。  \n",
+                "クラスは抽象的な概念であり、クラスを作成する際には、その概念が共通している属性、動作を定義する。\n",
+                "\n",
+                "用語集\n",
+                "\n",
+                "- オブジェクト指向プログラミング: プログラムをオブジェクト(データ)とそのオブジェクトの操作(メソッド)によって構成するプログラミング手法\n",
+                "- プロパティ: クラスの属性を表すもの(変数)\n",
+                "- メソッド: クラスの動作を表すもの(関数)\n",
+                "- クラス: オブジェクトの設計図\n",
+                "- インスタンス(=オブジェクト): クラスを実体化したもの\n",
+                "- インスタンス変数: インスタンスに紐づく変数\n",
+                "- インスタンスメソッド: インスタンスに紐づくメソッド\n",
+                "- コンストラクタ: インスタンスを作成する際に呼び出される特別なメソッド\n",
+                "- self: インスタンス変数にアクセスするためのキーワード\n",
+                "\n",
+                "車を例にクラスを作成する。"
+            ]
+        },
+        {
+            "cell_type": "code",
+            "execution_count": 1,
+            "metadata": {},
+            "outputs": [],
+            "source": [
+                "class Car:\n",
+                "    def __init__(self, color, price, brand, model):\n",
+                "        self.color = color\n",
+                "        self.price = price\n",
+                "        self.brand = brand\n",
+                "        self.model = model\n",
+                "\n",
+                "    def status(self):\n",
+                "        print(\n",
+                "            f\"色: {self.color}, 価格: {self.price}, ブランド: {self.brand}, モデル: {self.model}\"\n",
+                "        )\n",
+                "\n",
+                "    def change_color(self, color):\n",
+                "        self.color = color\n",
+                "\n",
+                "    def drive(self):\n",
+                "        print(f\"{self.model} driving\")"
+            ]
+        },
+        {
+            "cell_type": "markdown",
+            "metadata": {},
+            "source": [
+                "上記のように、色や価格などの属性はプロパティとして定義し、走るという動作はメソッドとして定義している。\n",
+                "\n",
+                "クラスを使用する際は、インスタンスを作成する。  \n",
+                "インスタンスとは、クラスを実体化したもの。  \n",
+                "つまり、設計書(クラス)を基に作成された車 1 台分のこと。  \n",
+                "\n",
+                "以下の例では、プリウス、アクア、フィットの 3 台の車を作成している。\n"
+            ]
+        },
+        {
+            "cell_type": "code",
+            "execution_count": 2,
+            "metadata": {},
+            "outputs": [],
+            "source": [
+                "prius = Car(\"white\", 2000000, \"Toyota\", \"Prius\")\n",
+                "aqua = Car(\"blue\", 1500000, \"Toyota\", \"Aqua\")\n",
+                "fit = Car(\"red\", 1000000, \"Honda\", \"Fit\")"
+            ]
+        },
+        {
+            "cell_type": "markdown",
+            "metadata": {},
+            "source": [
+                "#### コンストラクタ\n",
+                "\n",
+                "コンストラクタとは、クラスをインスタンス化する際に呼び出される特別なメソッド。\n",
+                "\n",
+                "コンストラクタは、インスタンス変数を初期化するために使用される。\n",
+                "\n",
+                "以下のように、__init__メソッドを使用してコンストラクタを定義する。  \n",
+                "※コンストラクタの第一引数には必ず self を指定する。\n"
+            ]
+        },
+        {
+            "cell_type": "code",
+            "execution_count": 3,
+            "metadata": {},
+            "outputs": [],
+            "source": [
+                "class Car:\n",
+                "    def __init__(self, color, price, brand, model):\n",
+                "        self.color = color\n",
+                "        self.price = price\n",
+                "        self.brand = brand\n",
+                "        self.model = model\n",
+                "\n",
+                "    def status(self):\n",
+                "        print(\n",
+                "            f\"色: {self.color}, 価格: {self.price}, ブランド: {self.brand}, モデル: {self.model}\"\n",
+                "        )"
+            ]
+        },
+        {
+            "cell_type": "markdown",
+            "metadata": {},
+            "source": [
+                "コンストラクタを使用してインスタンス変数に値を設定する場合は、self.プロパティ名 = 値とする。\n"
+            ]
+        },
+        {
+            "cell_type": "markdown",
+            "metadata": {},
+            "source": [
+                "### プロパティ\n"
+            ]
+        },
+        {
+            "cell_type": "markdown",
+            "metadata": {},
+            "source": [
+                "#### プロパティへのアクセス方法\n",
+                "\n",
+                "クラスの外では、以下のようにインスタンス変数.プロパティ名でプロパティの値を取得することができる。\n"
+            ]
+        },
+        {
+            "cell_type": "code",
+            "execution_count": 4,
+            "metadata": {},
+            "outputs": [
+                {
+                    "name": "stdout",
+                    "output_type": "stream",
+                    "text": [
+                        "white\n",
+                        "1500000\n",
+                        "Honda\n"
+                    ]
+                }
+            ],
+            "source": [
+                "print(prius.color)  # white\n",
+                "print(aqua.price)  # 1500000\n",
+                "print(fit.brand)  # Honda"
+            ]
+        },
+        {
+            "cell_type": "markdown",
+            "metadata": {},
+            "source": [
+                "#### プロパティへの値の設定方法\n",
+                "\n",
+                "コンストラクタで指定した引数を使用して、プロパティに値を設定する。\n",
+                "\n",
+                "self キーワードはクラス内(class クラス名宣言より 1 つインデントを追加したの中)でのみ使用できるキーワード。\n",
+                "\n",
+                "値を代入する場合は、クラスのメソッド内で以下のように self.プロパティ名 = 値とする。\n"
+            ]
+        },
+        {
+            "cell_type": "code",
+            "execution_count": 5,
+            "metadata": {},
+            "outputs": [],
+            "source": [
+                "class Car:\n",
+                "    def __init__(self, color, price, brand, model):\n",
+                "        self.color = color\n",
+                "        self.price = price\n",
+                "        self.brand = brand\n",
+                "        self.model = model\n",
+                "\n",
+                "    def status(self):\n",
+                "        print(\n",
+                "            f\"色: {self.color}, 価格: {self.price}, ブランド: {self.brand}, モデル: {self.model}\"\n",
+                "        )\n"
+            ]
+        },
+        {
+            "cell_type": "markdown",
+            "metadata": {},
+            "source": [
+                "#### プロパティの変更方法\n",
+                "\n",
+                "クラス外では、以下のようにインスタンス変数.プロパティ名 = 値でプロパティの値を変更することができる。\n"
+            ]
+        },
+        {
+            "cell_type": "code",
+            "execution_count": 6,
+            "metadata": {},
+            "outputs": [
+                {
+                    "name": "stdout",
+                    "output_type": "stream",
+                    "text": [
+                        "white\n",
+                        "1500000\n",
+                        "black\n",
+                        "1800000\n"
+                    ]
+                }
+            ],
+            "source": [
+                "print(prius.color)  # white\n",
+                "print(aqua.price)  # 1500000\n",
+                "prius.color = \"black\"\n",
+                "aqua.price = 1800000\n",
+                "print(prius.color)  # black\n",
+                "print(aqua.price)  # 1800000"
+            ]
+        },
+        {
+            "cell_type": "code",
+            "execution_count": 7,
+            "metadata": {},
+            "outputs": [
+                {
+                    "name": "stdout",
+                    "output_type": "stream",
+                    "text": [
+                        "black\n",
+                        "red\n"
+                    ]
+                }
+            ],
+            "source": [
+                "print(prius.color)\n",
+                "prius.change_color(\"red\")\n",
+                "print(prius.color)"
+            ]
+        },
+        {
+            "cell_type": "markdown",
+            "metadata": {},
+            "source": [
+                "クラス内でコンストラクタにあるように self.プロパティ名 = 値でプロパティの値を変更することができる。\n"
+            ]
+        },
+        {
+            "cell_type": "markdown",
+            "metadata": {},
+            "source": [
+                "### インスタンスメソッド\n"
+            ]
+        },
+        {
+            "cell_type": "markdown",
+            "metadata": {},
+            "source": [
+                "#### インスタンスメソッドの定義方法\n",
+                "\n",
+                "以下のように、__init__メソッドと同じインデント階層に、def キーワードを使用してメソッドを定義する。  \n",
+                "インスタンスメソッドの第一引数には、必ず self を指定する。\n"
+            ]
+        },
+        {
+            "cell_type": "code",
+            "execution_count": 8,
+            "metadata": {},
+            "outputs": [],
+            "source": [
+                "class Car:\n",
+                "    def __init__(self, color, price, brand, model):\n",
+                "        self.color = color\n",
+                "        self.price = price\n",
+                "        self.brand = brand\n",
+                "        self.model = model\n",
+                "\n",
+                "    def status(self):\n",
+                "        print(\n",
+                "            f\"色: {self.color}, 価格: {self.price}, ブランド: {self.brand}, モデル: {self.model}\"\n",
+                "        )"
+            ]
+        },
+        {
+            "cell_type": "markdown",
+            "metadata": {},
+            "source": [
+                "#### インスタンスメソッドの呼び出し方法\n",
+                "\n",
+                "以下のように、インスタンス変数.インスタンスメソッド名()で呼び出すことができる。\n"
+            ]
+        },
+        {
+            "cell_type": "code",
+            "execution_count": 9,
+            "metadata": {},
+            "outputs": [
+                {
+                    "name": "stdout",
+                    "output_type": "stream",
+                    "text": [
+                        "色: red, 価格: 2000000, ブランド: Toyota, モデル: Prius\n",
+                        "色: blue, 価格: 1800000, ブランド: Toyota, モデル: Aqua\n",
+                        "色: red, 価格: 1000000, ブランド: Honda, モデル: Fit\n"
+                    ]
+                }
+            ],
+            "source": [
+                "prius.status()  # 色: black, 価格: 2000000, ブランド: Toyota, モデル: Prius\n",
+                "aqua.status()  # 色: blue, 価格: 1800000, ブランド: Toyota, モデル: Aqua\n",
+                "fit.status()  # 色: red, 価格: 1000000, ブランド: Honda, モデル: Fit"
+            ]
+        },
+        {
+            "cell_type": "code",
+            "execution_count": 10,
+            "metadata": {},
+            "outputs": [
+                {
+                    "name": "stdout",
+                    "output_type": "stream",
+                    "text": [
+                        "Prius driving\n",
+                        "Aqua driving\n",
+                        "Fit driving\n"
+                    ]
+                }
+            ],
+            "source": [
+                "prius.drive()\n",
+                "aqua.drive()\n",
+                "fit.drive()"
+            ]
+        },
+        {
+            "cell_type": "markdown",
+            "metadata": {},
+            "source": [
+                "また、以下のようにクラスの中にクラスを格納することも可能。\n"
+            ]
+        },
+        {
+            "cell_type": "code",
+            "execution_count": 11,
+            "metadata": {},
+            "outputs": [],
+            "source": [
+                "def insert_db(name, age, email, password):\n",
+                "    print(f\"{name}さんの情報をDBに登録しました\")\n",
+                "\n",
+                "\n",
+                "def login_db(email, password):\n",
+                "    print(f\"{email}さんがログインしました\")\n",
+                "\n",
+                "\n",
+                "class CreditCard:\n",
+                "    def __init__(\n",
+                "        self,\n",
+                "        credit_card_number,\n",
+                "        cvv,\n",
+                "        expiration_date,\n",
+                "    ):\n",
+                "        self.credit_card_number = credit_card_number\n",
+                "        self.cvv = cvv\n",
+                "        self.expiration_date = expiration_date\n",
+                "\n",
+                "\n",
+                "class User:\n",
+                "    def __init__(self, name, age, email, password, credit):\n",
+                "        self.name = name\n",
+                "        self.age = age\n",
+                "        self.email = email\n",
+                "        self.password = password\n",
+                "        self.credit = credit\n",
+                "\n",
+                "    def register(self):\n",
+                "        insert_db(self.name, self.age, self.email, self.password)\n",
+                "\n",
+                "    def login(self):\n",
+                "        login_db(self.email, self.password)\n",
+                "\n",
+                "    def credit_card_status(self):\n",
+                "        print(\n",
+                "            f\"card number {self.credit.credit_card_number} cvv {self.credit.cvv} expiration_date {self.credit.expiration_date}\"\n",
+                "        )"
+            ]
+        },
+        {
+            "cell_type": "code",
+            "execution_count": 13,
+            "metadata": {},
+            "outputs": [
+                {
+                    "name": "stdout",
+                    "output_type": "stream",
+                    "text": [
+                        "Taroさんの情報をDBに登録しました\n",
+                        "taro@example.comさんがログインしました\n",
+                        "card number 1234567890 cvv 123 expiration_date 12/2022\n",
+                        "Jiroさんの情報をDBに登録しました\n",
+                        "jiro@example.comさんがログインしました\n",
+                        "card number 2222222222 cvv 222 expiration_date 12/2023\n"
+                    ]
+                }
+            ],
+            "source": [
+                "user = User(\n",
+                "    \"Taro\", 25, \"taro@example.com\", \"password\", CreditCard(\"1234567890\", 123, \"12/2022\")\n",
+                ")\n",
+                "user.register()  # Taroさんの情報をDBに登録しました\n",
+                "user.login()  # taro@example.comさんがログインしました\n",
+                "user.credit_card_status()\n",
+                "\n",
+                "user1 = User(\n",
+                "    \"Jiro\", 24, \"jiro@example.com\", \"password\", CreditCard(\"2222222222\", 222, \"12/2023\")\n",
+                ")\n",
+                "user1.register()  # Taroさんの情報をDBに登録しました\n",
+                "user1.login()  # taro@example.comさんがログインしました\n",
+                "user1.credit_card_status()"
+            ]
+        }
+    ],
+    "metadata": {
+        "kernelspec": {
+            "display_name": "Python 3",
+            "language": "python",
+            "name": "python3"
+        },
+        "language_info": {
+            "codemirror_mode": {
+                "name": "ipython",
+                "version": 3
+            },
+            "file_extension": ".py",
+            "mimetype": "text/x-python",
+            "name": "python",
+            "nbconvert_exporter": "python",
+            "pygments_lexer": "ipython3",
+            "version": "3.10.12"
+        }
+    },
+    "nbformat": 4,
+    "nbformat_minor": 2
+}
